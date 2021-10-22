@@ -1,0 +1,22 @@
+User Stories | Horseracing App |
+
+MVP
+1.	As a user, I would like to select a horse and jockey combination.
+2.	As a user, I would like the option to set all horses in a race.
+3.	As a user, I want to know if my horse won the race.
+4.	As a user, I want to view all horses.
+5.	As a user, I want to view all stables.
+6.	As a user, I want to view all tracks.
+7.	As a user, I want to view all jockeys.
+Silver
+1.	As a user, I would like to log in.
+2.	As a user, I would like to update my password.
+3.	As a user, I would like to create a horse.
+4.	As a user, I would like to create a jockey.
+5.	As a user, I would like to be able to set the length of the track.
+6.	As a user, I would like to select a type of track.
+GOLD
+1.	As a user, I would like to keep a horse record win/loss.
+2.	As a user, I want to see the results of the race.
+3.	As a user, I want my horse to have a level of chance regarding stats.
+4.	As a user, I want to see my list of bets.
