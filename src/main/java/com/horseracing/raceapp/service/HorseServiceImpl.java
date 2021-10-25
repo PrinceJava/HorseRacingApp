@@ -7,6 +7,7 @@ import com.horseracing.raceapp.model.forms.AddHorseToStableForm;
 import com.horseracing.raceapp.repository.HorseRepository;
 import com.horseracing.raceapp.repository.StableRepository;
 import com.horseracing.raceapp.service.interfaces.HorseService;
+import com.horseracing.raceapp.service.interfaces.StableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,9 @@ public class HorseServiceImpl implements HorseService {
 
     @Autowired
     StableRepository stableRepository;
+
+    @Autowired
+    StableService stableService;
 
     @Override
     public List<Horse> listHorses() {
@@ -58,7 +62,7 @@ public class HorseServiceImpl implements HorseService {
     @Override
     public Horse addHorseToStable(AddHorseToStableForm form) {
         try {
-            Stable stable = stableRepository.findStableByName(form.getStableName());
+            Stable stable = stableRepository.findByStableName(form.getStableName());
             Horse horse = horseRepository.findHorseByName(form.getHorseName());
             horse.setStable(stable);
             return horseRepository.save(horse);

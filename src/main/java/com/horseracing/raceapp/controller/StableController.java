@@ -22,6 +22,11 @@ public class StableController {
         return stableService.listStables();
     }
 
+    @GetMapping("/{stableName}/horses")
+    public List<Horse> listHorses(@PathVariable(value = "stableName") String stableName){
+        return stableService.listHorses(stableName);
+    };
+
     @PostMapping("/add")
     public Stable saveStable(@RequestBody Stable stable){
         return stableService.saveStable(stable);

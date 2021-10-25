@@ -2,6 +2,7 @@ package com.horseracing.raceapp.service;
 
 import com.horseracing.raceapp.model.Horse;
 import com.horseracing.raceapp.model.Stable;
+import com.horseracing.raceapp.repository.HorseRepository;
 import com.horseracing.raceapp.repository.StableRepository;
 import com.horseracing.raceapp.service.interfaces.StableService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class StableServiceImpl implements StableService {
 
     @Autowired
     StableRepository stableRepository;
+
+    @Autowired
+    HorseRepository horseRepository;
 
     @Override
     public List<Stable> listStables() {
@@ -39,7 +43,7 @@ public class StableServiceImpl implements StableService {
 
     @Override
     public List<Horse> listHorses(String stableName) {
-        return null;
+        return horseRepository.findHorseByStableName(stableName);
     }
 }
 
