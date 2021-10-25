@@ -10,9 +10,10 @@ public interface HorseService {
 
 
     public List<Horse> listHorses();
+    public Horse getHorse(String horseName);
     public Horse createHorse(Horse horse);
-    public Horse updateHorse(Horse horse);
-    public Horse deleteHorse(Horse horse);
+    public Horse updateHorse(Horse horse, String horseName);
+    public void deleteHorse(String horseName);
     public Horse addHorseToStable(AddHorseToStableForm form);
 
 }

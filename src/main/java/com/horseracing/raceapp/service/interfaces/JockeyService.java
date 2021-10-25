@@ -10,8 +10,9 @@ public interface JockeyService {
 
 
     public List<Jockey> listJockeys();
+    public Jockey getJockey(String jockeyName);
     public Jockey saveJockey(Jockey jockey);
-    public Jockey updateJockey(Jockey jockey);
-    public Jockey deleteJockey(Jockey jockey);
+    public Jockey updateJockey(Jockey jockey, String jockeyName);
+    public void deleteJockey(String jockeyName);
 
 }

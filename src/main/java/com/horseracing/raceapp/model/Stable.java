@@ -18,7 +18,7 @@ public class Stable {
     @Id
     private String id;
 
-    @Indexed(unique = true, sparse = true)
+    @Indexed
     private String name;
 
     @DBRef

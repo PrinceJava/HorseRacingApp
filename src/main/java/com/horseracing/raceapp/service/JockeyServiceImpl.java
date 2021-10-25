@@ -1,5 +1,6 @@
 package com.horseracing.raceapp.service;
 
+import com.horseracing.raceapp.exception.InformationNotFoundException;
 import com.horseracing.raceapp.model.Horse;
 import com.horseracing.raceapp.model.Jockey;
 import com.horseracing.raceapp.model.Stable;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class JockeyServiceImpl implements JockeyService {
@@ -32,6 +34,16 @@ public class JockeyServiceImpl implements JockeyService {
     }
 
     @Override
+    public Jockey getJockey(String jockeyName) {
+        try{
+         Jockey jockey = jockeyRepository.findJockeyByName(jockeyName);
+         return jockey;
+        }catch(NoSuchElementException e){
+            throw new InformationNotFoundException("Jockey not found");
+        }
+    }
+
+    @Override
     public Jockey saveJockey(Jockey jockey) {
         // potential error on value bounds.  come back to this later
         // thinking of weight, height, and skill limits parseInt values
@@ -44,13 +56,35 @@ public class JockeyServiceImpl implements JockeyService {
     }
 
     @Override
-    public Jockey updateJockey(Jockey jockey) {
-        return null;
+    public Jockey updateJockey(Jockey jockey, String jockeyName) {
+        try{
+            Jockey updatedJockey = jockeyRepository.findJockeyByName(jockeyName);
+            if(jockey.getName() != null){
+                updatedJockey.setName(jockey.getName());
+            }
+            if(jockey.getHeight() != null){
+                updatedJockey.setHeight(jockey.getHeight());
+            }
+            if(jockey.getWeight() != null){
+                updatedJockey.setWeight(jockey.getWeight());
+            }
+            if(jockey.getSkillLevel() != null){
+                updatedJockey.setSkillLevel(jockey.getSkillLevel());
+            }
+            return jockeyRepository.save(updatedJockey);
+        }catch(NoSuchElementException e){
+            throw new InformationNotFoundException("Jockey not found");
+        }
     }
 
     @Override
-    public Jockey deleteJockey(Jockey jockey) {
-        return null;
+    public void deleteJockey(String jockeyName) {
+        try {
+            Jockey jockey = jockeyRepository.findJockeyByName(jockeyName);
+            jockeyRepository.delete(jockey);
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("Jockey not found");
+        }
     }
 }
 

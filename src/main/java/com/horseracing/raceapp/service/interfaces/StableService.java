@@ -9,9 +9,10 @@ public interface StableService {
 
 
     public List<Stable> listStables();
+    public Stable getStable(String stableName);
     public Stable saveStable(Stable stable);
-    public Stable updateStable(Stable stable);
-    public Stable deleteStable(Stable stable);
+    public Stable updateStable(String stableName, Stable stable);
+    public void deleteStable(String stableName);
 
     public List<Horse> listHorses(String stableName);
 
