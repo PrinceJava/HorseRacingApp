@@ -1,6 +1,7 @@
 package com.horseracing.raceapp.controller;
 
 import com.horseracing.raceapp.model.Horse;
+import com.horseracing.raceapp.model.forms.AddHorseToStableForm;
 import com.horseracing.raceapp.service.interfaces.HorseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,5 +26,9 @@ public class HorseController {
         return horseService.createHorse(horse);
     }
 
+    @PostMapping("/addStable")
+    public Horse addHorseToStable(@RequestBody AddHorseToStableForm form){
+        return horseService.addHorseToStable(form);
+    }
 
 }
