@@ -27,7 +27,7 @@ public class JockeyServiceImpl implements JockeyService {
 
 
     @Override
-    public List<Jockey> listJockies() {
+    public List<Jockey> listJockeys() {
         return jockeyRepository.findAll();
     }
 

@@ -23,9 +23,6 @@ public class HorseServiceImpl implements HorseService {
     @Autowired
     StableRepository stableRepository;
 
-    @Autowired
-    StableService stableService;
-
     @Override
     public List<Horse> listHorses() {
         return horseRepository.findAll();

@@ -26,7 +26,7 @@ public class HorseController {
         return horseService.createHorse(horse);
     }
 
-    @PostMapping("/addStable")
+    @PostMapping("/addstable")
     public Horse addHorseToStable(@RequestBody AddHorseToStableForm form){
         return horseService.addHorseToStable(form);
     }

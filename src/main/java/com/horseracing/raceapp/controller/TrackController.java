@@ -1,31 +1,31 @@
 package com.horseracing.raceapp.controller;
 
 import com.horseracing.raceapp.model.Horse;
-import com.horseracing.raceapp.model.Jockey;
 import com.horseracing.raceapp.model.Stable;
-import com.horseracing.raceapp.service.interfaces.JockeyService;
+import com.horseracing.raceapp.model.Track;
 import com.horseracing.raceapp.service.interfaces.StableService;
+import com.horseracing.raceapp.service.interfaces.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/jockey")
-public class JockeyController {
+@RequestMapping("/api/track")
+public class TrackController {
 
     @Autowired
-    JockeyService jockeyService;
+    TrackService trackService;
 
 
     @GetMapping("/list")
-    public List<Jockey> listJockeys(){
-        return jockeyService.listJockeys();
+    public List<Track> listTracks(){
+        return trackService.listTracks();
     }
 
 
     @PostMapping("/add")
-    public Jockey saveJockey(@RequestBody Jockey jockey){
-        return jockeyService.saveJockey(jockey);
+    public Track saveTrack(@RequestBody Track track){
+        return trackService.saveTrack(track);
     }
 }
