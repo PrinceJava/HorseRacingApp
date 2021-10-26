@@ -1,0 +1,56 @@
+db.track.insertMany([
+{
+    "name": "Belmont",
+    "condition": "medium",
+    "length": "2400"
+},
+{
+    "name": "Churchill Downs",
+    "condition": "hard",
+    "length": "2500"
+},
+{
+    "name": "Arlington Park",
+    "condition": "soft",
+    "length": "2400"
+},
+{
+    "name": "Monmouth Park",
+    "condition": "mud",
+    "length": "1700"
+},
+{
+    "name": "Saratoga Race Course",
+    "condition": "rain",
+    "length": "1900"
+},
+{
+    "name": "Pimlico Park",
+    "condition": "medium",
+    "length": "2400"
+},
+{
+    "name": "Keeneland Race Course",
+    "condition": "hard",
+    "length": "2300"
+},
+{
+    "name": "Oaklawn Park",
+    "condition": "soft",
+    "length": "1800"
+},
+{
+    "name": "Belmont",
+    "condition": "mud",
+    "length": "2100"
+},
+{
+    "name": "Del Mar Race Track",
+    "condition": "rain",
+    "length": "2000"
+},
+{
+    "name": "Santa Anita Park",
+    "condition": "hard",
+    "length": "1609"
+}])

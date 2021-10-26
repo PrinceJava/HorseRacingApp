@@ -10,8 +10,9 @@ public interface TrackService {
 
 
     public List<Track> listTracks();
+    public Track getTrack(String trackName);
     public Track saveTrack(Track track);
-    public Track updateTrack(Track track);
-    public Track deleteTrack(Track track);
+    public Track updateTrack(Track track, String trackName);
+    public void deleteTrack(String trackName);
 
 }

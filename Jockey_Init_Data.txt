@@ -1,0 +1,85 @@
+db.jockey.insertMany([
+{
+    "name": "Peter",
+    "weight": "120",
+    "height": "4.7",
+    "skillLevel": "8"
+},
+{
+    "name": "Chap",
+    "weight": "115",
+    "height": "4.6",
+    "skillLevel": "3"
+},
+{
+    "name": "Beowoulf",
+    "weight": "101",
+    "height": "4.3",
+    "skillLevel": "7"
+},
+{
+    "name": "Lucy",
+    "weight": "99",
+    "height": "4.1",
+    "skillLevel": "9"
+},
+{
+    "name": "Jans",
+    "weight": "110",
+    "height": "5.0",
+    "skillLevel": "1"
+},
+{
+    "name": "Matty",
+    "weight": "101",
+    "height": "5.3",
+    "skillLevel": "2"
+},
+{
+    "name": "Sparkle",
+    "weight": "101",
+    "height": "4.10",
+    "skillLevel": "5"
+},
+{
+    "name": "Penny",
+    "weight": "101",
+    "height": "4.11",
+    "skillLevel": "5"
+},
+{
+    "name": "Thomas",
+    "weight": "101",
+    "height": "5.3",
+    "skillLevel": "8"
+},
+{
+    "name": "Chantelle",
+    "weight": "101",
+    "height": "5.1",
+    "skillLevel": "9"
+},
+{
+    "name": "Scotty",
+    "weight": "101",
+    "height": "5.1",
+    "skillLevel": "3"
+},
+{
+    "name": "Griswold",
+    "weight": "101",
+    "height": "4.10",
+    "skillLevel": "5"
+},
+{
+    "name": "Daniel",
+    "weight": "101",
+    "height": "4.11",
+    "skillLevel": "4"
+},
+{
+    "name": "Kryptic",
+    "weight": "101",
+    "height": "4.10",
+    "skillLevel": "6"
+}])

@@ -1,5 +1,6 @@
 package com.horseracing.raceapp.service;
 
+import com.horseracing.raceapp.exception.InformationNotFoundException;
 import com.horseracing.raceapp.model.Horse;
 import com.horseracing.raceapp.model.Stable;
 import com.horseracing.raceapp.model.Track;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class TrackServiceImpl implements TrackService {
@@ -25,6 +27,11 @@ public class TrackServiceImpl implements TrackService {
     }
 
     @Override
+    public Track getTrack(String trackName) {
+        return trackRepository.findTrackByName(trackName);
+    }
+
+    @Override
     public Track saveTrack(Track track) {
         Track newTrack = new Track();
         newTrack.setName(track.getName());
@@ -34,13 +41,26 @@ public class TrackServiceImpl implements TrackService {
     }
 
     @Override
-    public Track updateTrack(Track track) {
-        return null;
+    public Track updateTrack(Track track, String trackName) {
+        try {
+            Track updateTrack = trackRepository.findTrackByName(trackName);
+            if (track.getName() != null) {
+                updateTrack.setName(track.getName());
+            }
+            return trackRepository.save(updateTrack);
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("Track not found");
+        }
     }
 
     @Override
-    public Track deleteTrack(Track track) {
-        return null;
+    public void deleteTrack(String trackName) {
+        try {
+            Track track = trackRepository.findTrackByName(trackName);
+            trackRepository.delete(track);
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("Track not found");
+        }
     }
 }
 
