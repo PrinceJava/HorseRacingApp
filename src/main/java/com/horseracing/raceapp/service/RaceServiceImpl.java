@@ -8,9 +8,12 @@ import com.horseracing.raceapp.repository.HorseRepository;
 import com.horseracing.raceapp.repository.JockeyRepository;
 import com.horseracing.raceapp.repository.StableRepository;
 import com.horseracing.raceapp.repository.TrackRepository;
+import com.horseracing.raceapp.security.MyUserDetails;
 import com.horseracing.raceapp.service.interfaces.HorseService;
+import com.horseracing.raceapp.service.interfaces.RaceLedgerService;
 import com.horseracing.raceapp.service.interfaces.RaceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Node;
 
@@ -34,10 +37,16 @@ public class RaceServiceImpl implements RaceService {
     @Autowired
     TrackRepository trackRepository;
 
+    @Autowired
+    RaceLedgerService raceLedgerService;
+
 
     @Override
     public void startRace(RaceForm form) {
-
+        System.out.println("Calling CategoryService createCategory ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal();
         // TODO logic of taking horse and Jockey input, as well as Track input
         Random random = new Random();
         Hashtable<Horse, Jockey> racer = new Hashtable<>();
@@ -120,7 +129,10 @@ public class RaceServiceImpl implements RaceService {
                 for (Map.Entry<Horse, Jockey> result : results) {
                     System.out.println("Horse: " + result.getKey().getName() + " final Speed: " + result.getKey().getSpeed() + " and Jockey: " + result.getValue().getName());
                 }
+                RaceLedger newRace = new RaceLedger(selectedTrack.getName(),results);
+                raceLedgerService.addEntry(newRace);
             }
+
         }catch(Exception e){
             throw new InformationNotFoundException("Something went wrong, please try again");
         }

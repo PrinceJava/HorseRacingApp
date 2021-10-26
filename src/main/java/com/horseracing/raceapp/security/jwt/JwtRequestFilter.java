@@ -1,11 +1,10 @@
 package com.horseracing.raceapp.security.jwt;
 
-import lombok.RequiredArgsConstructor;
+import com.horseracing.raceapp.security.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -27,16 +26,11 @@ import java.io.IOException;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-
-    private UserDetailsService userDetailsService;
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
 
     @Autowired
-    public void setUserDetailsService(UserDetailsService userDetailsService){this.userDetailsService = userDetailsService;}
-
     private JWTUtils jwtUtils;
-
-    @Autowired
-    public void setJwtUtils(JWTUtils jwtUtils){this.jwtUtils = jwtUtils;}
 
     //When any api will be called this method will be called first and this will extract
     // Token from header pass to JWT Util calls for token details extraction
@@ -50,19 +44,16 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String username = null;
         String jwt = null;
 
-        // HERE IS WHERE I NEED TO CREATE THE ROLES LIST IN COLLECTION
         //Checking if Bearer is present in Header or not because When sending api request with
         // token bearer should be present in that
         if (AuthorizationHeader != null && AuthorizationHeader.startsWith("Bearer ")) {
             jwt = AuthorizationHeader.substring(7);
             username = jwtUtils.extractUsername(jwt);
         }
-
-        // POSSIBLE TODO IS UPDATE THIS TO INCLUDE ROLE IN HEADER
         //Token is being passed to JwtUtil class for details extraction
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             // only place to call the UserDetailsService interface method and sets UserDetails to it
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+            UserDetails userDetails = this.myUserDetailsService.loadUserByUsername(username);
             if (jwtUtils.validateToken(jwt, userDetails)) {
                 UsernamePasswordAuthenticationToken
                         usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(

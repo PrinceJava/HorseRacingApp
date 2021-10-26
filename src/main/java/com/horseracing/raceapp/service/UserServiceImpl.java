@@ -1,75 +1,97 @@
 package com.horseracing.raceapp.service;
 
-import com.horseracing.raceapp.exception.InformationNotFoundException;
-import com.horseracing.raceapp.model.Horse;
-import com.horseracing.raceapp.model.Stable;
+import com.horseracing.raceapp.exception.InformationExistsException;
 import com.horseracing.raceapp.model.User;
-import com.horseracing.raceapp.model.forms.AddHorseToStableForm;
-import com.horseracing.raceapp.repository.HorseRepository;
-import com.horseracing.raceapp.repository.StableRepository;
+import com.horseracing.raceapp.model.forms.LoginRequest;
+import com.horseracing.raceapp.model.forms.LoginResponse;
 import com.horseracing.raceapp.repository.UserRepository;
 import com.horseracing.raceapp.security.jwt.JWTUtils;
-import com.horseracing.raceapp.service.interfaces.HorseService;
 import com.horseracing.raceapp.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-
-    private UserRepository userRepository;
-    private UserDetailsService userDetailsService;
-    private PasswordEncoder passwordEncoder;
-    private AuthenticationManager authenticationManager;
-    private UserService userService;
-    private JWTUtils jwtUtils;
-
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    PasswordEncoder passwordEncoder;
 
     @Autowired
-    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
+    AuthenticationManager authenticationManager;
 
     @Autowired
-    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
-    }
+    JWTUtils jwtUtils;
 
     @Autowired
-    public void setUserDetailsService(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
-
-    @Autowired
-    public void setJwtUtils(JWTUtils jwtUtils) {
-        this.jwtUtils = jwtUtils;
-    }
+    UserDetailsService userDetailsService;
 
     @Override
-    public List<User> listUsers() {
+    public User addUser(User user) {
         return null;
     }
 
     @Override
-    public User findUserByEmail(String email) {
+    public List<User> getUsers() {
         return null;
     }
 
     @Override
+    public User getUser(String userName) {
+        return null;
+    }
+
+    @Override
+    public User updateUser(User user, String userName) {
+        return null;
+    }
+
+    @Override
+    public void deleteUser(String userName) {
+
+    }
+
+    @Override
+    public User createUser(String userName, String emailAddress, String password) {
+        System.out.println("service is calling createUser==>");
+        // if user not exists by the email
+        // then create the user in the db
+
+        if (!userRepository.existsByEmailAddress(emailAddress)) {
+
+            User newUser = new User();
+            newUser.setUserName(userName);
+            newUser.setEmailAddress(emailAddress);
+            newUser.setPassword(passwordEncoder.encode(password));
+            return userRepository.save(newUser);
+//            return newUser;
+        } else {
+            throw new InformationExistsException("user with the email address " +
+                    emailAddress + " already exists");
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> loginUser(LoginRequest loginRequest) {
+        System.out.println("service calling loginUser ==>");
+        authenticationManager.authenticate(new
+                UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmail());
+        final String JWT = jwtUtils.generateToken(userDetails);
+        return ResponseEntity.ok(new LoginResponse(JWT));
+    }
+
     public User findUserByEmailAddress(String email) {
-        return null;
+        return userRepository.findUserByEmailAddress(email);
     }
 }
-

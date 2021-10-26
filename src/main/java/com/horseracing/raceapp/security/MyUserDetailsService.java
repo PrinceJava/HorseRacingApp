@@ -8,6 +8,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/*
+Loads User-Specific Details
+Implements UserDetailsService which is an inbuilt SPRING interface with one method
+    loadUserByUserName(String username *or email*
+    https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/UserDetailsService.html
+ */
+
 @Service
 public class MyUserDetailsService implements UserDetailsService {
     private UserService userService;
@@ -20,9 +27,6 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userService.findUserByEmailAddress(email);
-        if(user == null){
-            throw new UsernameNotFoundException("Username not found in database");
-        }
         return new MyUserDetails(user);
     }
 }

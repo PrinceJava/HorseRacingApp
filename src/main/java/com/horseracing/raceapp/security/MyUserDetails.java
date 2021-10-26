@@ -2,14 +2,10 @@ package com.horseracing.raceapp.security;
 
 import com.horseracing.raceapp.model.User;
 import org.springframework.security.core.GrantedAuthority;
-
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-
 
 /*
 * Provides core user information.
@@ -27,7 +23,13 @@ Concrete implementations must take particular care to ensure the non-null contra
 public class MyUserDetails implements UserDetails {
 
     private User user;
+    private String userName;
+    private String password;
+    private String emailAddress;
 
+    // LOOK INTO GRANTED AUTHORITIES
+
+    // CONSTRUCTOR THAT THE myUserDetailsService Returns from the UserService Interface Method
     public MyUserDetails(User user) {
         this.user = user;
     }
@@ -36,13 +38,15 @@ public class MyUserDetails implements UserDetails {
         return user;
     }
 
+    // -------------------------------- USER DETAILS INTERFACE ------------------------------------------//
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        return authorities;
+        return new HashSet<GrantedAuthority>();
     }
 
-
+    // CAUSED A LOT OF ERRORS IF YOU DON"T HAVE
+    // http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+    // SET UP IN SECURITY CONFIGURER
     @Override
     public String getPassword() {
         return user.getPassword();

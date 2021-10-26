@@ -17,9 +17,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.context.WebApplicationContext;
 
-@EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+
+@EnableWebSecurity
+public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
+
+    // set and map MyUserDetailsService to take given UserName and find the User and send to MyUserDetails
     private MyUserDetailsService myUserDetailsService;
 
     @Autowired
@@ -30,19 +33,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
+    // step1
 
+    /**
+     * We use the PasswordEncoder that is defined in the Spring Security configuration to encode the password. * @return
+     */
     @Bean
     public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
 
+    // step2
+    // configure PUBLIC URL's, ones that don't require a JWT with it
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(
-                        "/api/register", "/api/login").permitAll()
-                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/user/**").access("hasRole('ROLE_USER')")
-                .antMatchers("/user/**").access("hasRole('ROLE_ADMIN')")
+                        "/api/**").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

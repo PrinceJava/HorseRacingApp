@@ -1,27 +1,27 @@
 package com.horseracing.raceapp.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document @Data @NoArgsConstructor @AllArgsConstructor
+import java.util.List;
+
+@Document @NoArgsConstructor
+@Data
 public class User {
 
     @Id
     private String id;
 
-    @Indexed(unique = true, sparse = true)
+    @Indexed (unique = true, sparse = true)
     private String userName;
 
-    @Indexed(unique = true, sparse = true)
     private String emailAddress;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-
 
 }

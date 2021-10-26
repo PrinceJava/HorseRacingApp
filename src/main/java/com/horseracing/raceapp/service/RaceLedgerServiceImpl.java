@@ -7,9 +7,11 @@ import com.horseracing.raceapp.model.RaceLedger;
 import com.horseracing.raceapp.model.Track;
 import com.horseracing.raceapp.model.forms.RaceForm;
 import com.horseracing.raceapp.repository.*;
+import com.horseracing.raceapp.security.MyUserDetails;
 import com.horseracing.raceapp.service.interfaces.RaceLedgerService;
 import com.horseracing.raceapp.service.interfaces.RaceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -48,7 +50,11 @@ public class RaceLedgerServiceImpl implements RaceLedgerService {
 
     @Override
     public RaceLedger addEntry(RaceLedger raceLedger) {
-        return null;
+        System.out.println("Calling CategoryService createCategory ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal();
+        return raceLedgerRepository.save(raceLedger);
     }
 
     @Override
