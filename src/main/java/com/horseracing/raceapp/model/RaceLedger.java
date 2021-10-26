@@ -1,6 +1,5 @@
 package com.horseracing.raceapp.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,20 +7,20 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document @Data @NoArgsConstructor @AllArgsConstructor
-public class User {
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
-    @Id
+@Document @Data @NoArgsConstructor @AllArgsConstructor
+public class RaceLedger {
+
+    @Id @Indexed
     private String id;
 
-    @Indexed(unique = true, sparse = true)
-    private String userName;
+    private String trackName;
 
-    @Indexed(unique = true, sparse = true)
-    private String emailAddress;
+    private LocalDateTime date;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String password;
-
+    private List<Map.Entry<Horse, Jockey>> results;
 
 }

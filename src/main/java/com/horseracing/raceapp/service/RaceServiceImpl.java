@@ -36,7 +36,7 @@ public class RaceServiceImpl implements RaceService {
 
 
     @Override
-    public Race startRace(RaceForm form) {
+    public void startRace(RaceForm form) {
 
         // TODO logic of taking horse and Jockey input, as well as Track input
         Random random = new Random();
@@ -124,6 +124,5 @@ public class RaceServiceImpl implements RaceService {
         }catch(Exception e){
             throw new InformationNotFoundException("Something went wrong, please try again");
         }
-        return null;
     }
 }

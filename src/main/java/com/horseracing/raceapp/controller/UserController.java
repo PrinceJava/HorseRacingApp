@@ -17,38 +17,21 @@ public class UserController {
     @Autowired
     UserService userService;
 
+//    @GetMapping("/list")
+//    public List<User> listUsers() {
+////        return userService.listUsers();
+//    }
+//
+//    @PostMapping("/signup")
+//    public User signUp(@RequestBody SignUpForm signUpForm) {
+//        return userService.createUser(User);
+//    }
 
-
-    @GetMapping("/list")
-    public List<User> listUsers(){
-        return userService.listUsers();
-    }
-
-    @PostMapping("/signup")
-    public User signUp(@RequestBody SignUpForm signUpForm){
-        return userService.createUser(User);
-    }
-
-    @PostMapping("/addstable")
-    public Horse addHorseToStable(@RequestBody AddHorseToStableForm form){
-        return horseService.addHorseToStable(form);
-    }
-
-    @GetMapping("/{horseName}")
-    public Horse getHorse (@PathVariable(value = "horseName")String horseName){
-        return horseService.getHorse(horseName);
-    }
-
-    @PutMapping("/updatehorse/{horseName}")
-    public Horse updateHorse (@PathVariable (value = "horseName") String horseName,
-                              @RequestBody Horse horse){
-        return horseService.updateHorse(horse, horseName);
-    }
-
-    @DeleteMapping("/delete/{name}")
-    public void deleteHorse(@PathVariable(value = "name") String name){
-        horseService.deleteHorse(name);
-    }
+//    @GetMapping ("/user/{email}")
+//    public User getUserByEmail(@PathVariable String email){
+//        return userService.findUserByEmail(email);
+//    }
 
 
 }
+

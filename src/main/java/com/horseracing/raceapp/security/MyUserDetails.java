@@ -27,13 +27,7 @@ Concrete implementations must take particular care to ensure the non-null contra
 public class MyUserDetails implements UserDetails {
 
     private User user;
-    private String userName;
-    private String password;
-    private String emailAddress;
 
-    // LOOK INTO GRANTED AUTHORITIES
-
-    // CONSTRUCTOR THAT THE myUserDetailsService Returns from the UserService Interface Method
     public MyUserDetails(User user) {
         this.user = user;
     }
@@ -42,20 +36,13 @@ public class MyUserDetails implements UserDetails {
         return user;
     }
 
-    // -------------------------------- USER DETAILS INTERFACE ------------------------------------------//
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-//        user.getRoles().forEach(role -> {
-//            authorities.add(new SimpleGrantedAuthority(role.getName()));
-//        });
-//        return authorities;
-//    }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        return authorities;
+    }
 
 
-    // CAUSED A LOT OF ERRORS IF YOU DON"T HAVE
-    // http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-    // SET UP IN SECURITY CONFIGURER
     @Override
     public String getPassword() {
         return user.getPassword();

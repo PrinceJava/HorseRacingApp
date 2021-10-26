@@ -3,6 +3,7 @@ package com.horseracing.raceapp.service;
 import com.horseracing.raceapp.exception.InformationNotFoundException;
 import com.horseracing.raceapp.model.Horse;
 import com.horseracing.raceapp.model.Stable;
+import com.horseracing.raceapp.model.User;
 import com.horseracing.raceapp.model.forms.AddHorseToStableForm;
 import com.horseracing.raceapp.repository.HorseRepository;
 import com.horseracing.raceapp.repository.StableRepository;
@@ -12,6 +13,7 @@ import com.horseracing.raceapp.service.interfaces.HorseService;
 import com.horseracing.raceapp.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,7 @@ public class UserServiceImpl implements UserService {
 
 
     private UserRepository userRepository;
+    private UserDetailsService userDetailsService;
     private PasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
     private UserService userService;
@@ -30,71 +33,43 @@ public class UserServiceImpl implements UserService {
 
 
     @Autowired
-    public void setUserRepository(UserRepository userRepository) {this.userRepository = userRepository;}
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Autowired
-    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {this.passwordEncoder = passwordEncoder;}
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Autowired
     public void setAuthenticationManager(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
-
-        @Autowired
-        public void setUserDetailsService(UserDetailsService userDetailsService) {
-            this.userDetailsService = userDetailsService;
-        }
-
-        @Autowired
-        public void setJwtUtils(JWTUtils jwtUtils) {this.jwtUtils = jwtUtils;}
-
-    @Override
-    public User createUser(User user) {
-        Horse newHorse = new Horse();
-        newHorse.setName(horse.getName());
-        newHorse.setAge(horse.getAge());
-        newHorse.setColor(horse.getColor());
-        newHorse.setHeight(horse.getHeight());
-        newHorse.setSex(horse.getSex());
-        newHorse.setFavCondition(horse.getFavCondition());
-        newHorse.setSpeed(horse.getSpeed());
-        newHorse.setStamina(horse.getStamina());
-        newHorse.setWorstCondition(horse.getWorstCondition());
-        newHorse.setWeight(horse.getWeight());
-        horseRepository.save(newHorse);
-        return newHorse;
     }
 
+    @Autowired
+    public void setUserDetailsService(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
-
-    @Override
-    public void deleteHorse(String name) {
-        System.out.println("Horse Service Delete Horse ====>");
-        try{
-            Horse horse = horseRepository.findHorseByName(name);
-            horseRepository.delete(horse);
-        }catch(NoSuchElementException e){
-            throw new InformationNotFoundException("Horse not found");
-        }
+    @Autowired
+    public void setJwtUtils(JWTUtils jwtUtils) {
+        this.jwtUtils = jwtUtils;
     }
 
     @Override
-    public Horse getHorse(String horseName) {
-       try {
-           return horseRepository.findHorseByName(horseName);
-       }catch(NoSuchElementException e) {
-           throw new InformationNotFoundException("Horse does not exist");
-       }
+    public List<User> listUsers() {
+        return null;
     }
 
     @Override
-    public Horse addHorseToStable(AddHorseToStableForm form) {
-        try {
-            Stable stable = stableRepository.findByStableName(form.getStableName());
-            Horse horse = horseRepository.findHorseByName(form.getHorseName());
-            horse.setStable(stable);
-            return horseRepository.save(horse);
-        }catch(NoSuchElementException e){
-            throw new InformationNotFoundException("Horse and or Stable not found");
-        }
+    public User findUserByEmail(String email) {
+        return null;
+    }
+
+    @Override
+    public User findUserByEmailAddress(String email) {
+        return null;
     }
 }
+

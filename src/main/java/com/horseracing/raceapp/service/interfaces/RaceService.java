@@ -10,6 +10,6 @@ import java.util.List;
 public interface RaceService {
 
 
-    public Race startRace(RaceForm form);
+    public void startRace(RaceForm form);
 
 }
