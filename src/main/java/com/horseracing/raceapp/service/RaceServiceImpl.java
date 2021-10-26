@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.w3c.dom.Node;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class RaceServiceImpl implements RaceService {
@@ -114,10 +115,15 @@ public class RaceServiceImpl implements RaceService {
                 double randomMultiplayer = random.nextDouble()*(max - min +0.01)+min;
                 entry.getKey().setSpeed(String.valueOf(Integer.parseInt(entry.getKey().getSpeed()) - (Integer.parseInt(entry.getKey().getSpeed()) * randomMultiplayer)));
 
+                List<Map.Entry<Horse, Jockey>> results = racer.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.comparing(Horse::getSpeed).reversed())).collect(Collectors.toList());/*.forEach(System.out::println);*/
 
+                for (Map.Entry<Horse, Jockey> result : results) {
+                    System.out.println("Horse: " + result.getKey().getName() + " final Speed: " + result.getKey().getSpeed() + " and Jockey: " + result.getValue().getName());
+                }
             }
         }catch(Exception e){
             throw new InformationNotFoundException("Something went wrong, please try again");
         }
+        return null;
     }
 }
