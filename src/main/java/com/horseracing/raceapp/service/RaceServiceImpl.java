@@ -64,7 +64,6 @@ public class RaceServiceImpl implements RaceService {
                     = racer.entrySet();
 
             for (Map.Entry<Horse, Jockey> entry : entrySet) {
-                System.out.println("Key: " + entry.getKey().getName() + " and Value: " + entry.getValue().getName());
 
                 //TODO logic to update
                 // if selected.track == horse.favorite +1

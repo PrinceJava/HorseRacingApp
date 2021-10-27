@@ -8,8 +8,10 @@ import com.horseracing.raceapp.service.interfaces.HorseService;
 import com.horseracing.raceapp.service.interfaces.RaceLedgerService;
 import com.horseracing.raceapp.service.interfaces.RaceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -34,9 +36,11 @@ public class RaceLedgerController {
     }
 
     @GetMapping("/race")
-    public void startRace(@RequestBody RaceForm form){
+    public ResponseEntity<?> startRace(@RequestBody RaceForm form){
         System.out.println("Starting Race");
         raceService.startRace(form.getHorseName(), form.getJockeyName(), form.getTrackName());
+        URI uri = URI.create("/com.horseracing.raceapp.controller.raceledgercontroller");
+        return ResponseEntity.created(uri).build();
     }
 
 }

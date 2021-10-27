@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Result {
 
-    private String id;
-
     private String place;
     private String horse;
     private String finalSpeed;

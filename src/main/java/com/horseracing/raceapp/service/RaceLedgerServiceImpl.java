@@ -7,8 +7,15 @@ import com.horseracing.raceapp.model.Result;
 import com.horseracing.raceapp.repository.*;
 import com.horseracing.raceapp.service.interfaces.RaceLedgerService;
 import com.horseracing.raceapp.service.interfaces.RaceService;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.conversions.Bson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
@@ -19,8 +26,6 @@ import java.util.*;
 
 @Service
 public class RaceLedgerServiceImpl implements RaceLedgerService {
-
-
 
     @Autowired
     HorseRepository horseRepository;
@@ -40,6 +45,8 @@ public class RaceLedgerServiceImpl implements RaceLedgerService {
     @Autowired
     protected MongoTemplate mongoTemplate;
 
+    @Autowired
+    MongoClient mongoClient;
 
     @Override
     public List<RaceLedger> getRaces() {
@@ -71,21 +78,26 @@ public class RaceLedgerServiceImpl implements RaceLedgerService {
     }
 
     @Override
-    public RaceLedger createEntry(String trackName, List<Map.Entry<Horse, Jockey>> results) {
+    public void createEntry(String trackName, List<Map.Entry<Horse, Jockey>> results) {
+
         RaceLedger createdLedger = new RaceLedger();
         createdLedger.setDate(LocalDateTime.now());
         createdLedger.setTrackName(trackName);
+        raceLedgerRepository.save(createdLedger);
         Result result = new Result();
-        for(int i = 1; i <= results.size(); i++){
-            result.setPlace(String.valueOf(i));
+        for(int i = 0; i < results.size(); i++){
+            result.setPlace(String.valueOf(i+1));
             result.setHorse(results.get(i).getKey().getName());
             result.setFinalSpeed(results.get(i).getKey().getSpeed());
             result.setJockey(results.get(i).getValue().getName());
-            raceLedgerRepository.save(createdLedger);
+
+
+
+            Query query = Query.query(Criteria.where("_id").is(createdLedger.getId()));
+            Update update = new Update().push("results").each(result);
+            mongoTemplate.upsert(query, update, "raceLedger");
 //            mongoTemplate.updateFirst(Query.query(Criteria.where("id").is(createdLedger.getId()), new Update().push("results", new Result[]{result})));
-            raceLedgerRepository.pushResultToLedger(createdLedger.getId(), result.getPlace(), result.getHorse(),result.getJockey(),result.getFinalSpeed());
-            raceLedgerRepository.save(createdLedger);
+//            raceLedgerRepository.save(createdLedger);
         }
-        return raceLedgerRepository.save(createdLedger);
     }
 }

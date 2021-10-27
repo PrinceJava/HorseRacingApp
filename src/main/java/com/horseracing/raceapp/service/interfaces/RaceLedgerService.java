@@ -4,6 +4,7 @@ import com.horseracing.raceapp.model.Horse;
 import com.horseracing.raceapp.model.Jockey;
 import com.horseracing.raceapp.model.RaceLedger;
 import com.horseracing.raceapp.model.forms.RaceForm;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,6 @@ public interface RaceLedgerService {
     public RaceLedger addEntry(RaceLedger raceLedger);
     public RaceLedger updateEntry(String id);
     public RaceLedger deleteEntry(String id);
-    public RaceLedger createEntry(String trackName,List<Map.Entry<Horse, Jockey>> results);
+    public void createEntry(String trackName, List<Map.Entry<Horse, Jockey>> results);
 
 }

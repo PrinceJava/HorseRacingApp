@@ -22,6 +22,7 @@ public class Stable {
     private String name;
 
     @DBRef
+    @JsonIgnore
     private List<Horse> horses;
 
 }
