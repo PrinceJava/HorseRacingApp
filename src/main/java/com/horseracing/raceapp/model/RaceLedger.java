@@ -21,12 +21,6 @@ public class RaceLedger {
 
     private LocalDateTime date;
 
-    private List<Map.Entry<Horse, Jockey>> results;
-
-    public RaceLedger(String trackName, List<Map.Entry<Horse,Jockey>> results){
-        this.trackName = trackName;
-        this.date = LocalDateTime.now();
-        this.results = results;
-    }
+    private List<Result> results;
 
 }

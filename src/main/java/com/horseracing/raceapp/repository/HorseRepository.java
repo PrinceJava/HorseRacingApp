@@ -14,6 +14,4 @@ public interface HorseRepository extends MongoRepository<Horse, String> {
     @Query("{'stable.name': ?0}")
     public List<Horse> findHorseByStableName(String stableName);
 
-    @Query("db.horse.aggregate([{ $sample: { size: 4}}]).pretty()")
-    public List<Horse> eightRandomHorses();
 }

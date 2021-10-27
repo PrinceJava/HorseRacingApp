@@ -3,6 +3,7 @@ package com.horseracing.raceapp.controller;
 import com.horseracing.raceapp.model.Horse;
 import com.horseracing.raceapp.model.RaceLedger;
 import com.horseracing.raceapp.model.forms.AddHorseToStableForm;
+import com.horseracing.raceapp.model.forms.RaceForm;
 import com.horseracing.raceapp.service.interfaces.HorseService;
 import com.horseracing.raceapp.service.interfaces.RaceLedgerService;
 import com.horseracing.raceapp.service.interfaces.RaceService;
@@ -21,12 +22,21 @@ public class RaceLedgerController {
     @Autowired
     RaceLedgerService raceLedgerService;
 
+    @Autowired
+    RaceService raceService;
+
 
     //TODO CRUD for RACE LEDGER
 
     @GetMapping("/allraces")
     public List<RaceLedger> getRaces(){
         return raceLedgerService.getRaces();
+    }
+
+    @GetMapping("/race")
+    public void startRace(@RequestBody RaceForm form){
+        System.out.println("Starting Race");
+        raceService.startRace(form.getHorseName(), form.getJockeyName(), form.getTrackName());
     }
 
 }
