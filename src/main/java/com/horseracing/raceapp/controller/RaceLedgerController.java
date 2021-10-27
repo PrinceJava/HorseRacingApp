@@ -47,8 +47,8 @@ public class RaceLedgerController {
     }
 
     @GetMapping("/{raceId}")
-    public List<RaceLedger> getRaces(@PathVariable(value = "raceId") String raceId) {
-        return raceLedgerService.getRaces();
+    public RaceLedger getRace(@PathVariable(value = "raceId") String raceId) {
+        return raceLedgerService.getRace(raceId);
     }
 
     @DeleteMapping("/delete/{raceId}")
@@ -56,17 +56,17 @@ public class RaceLedgerController {
         raceLedgerService.deleteEntry(raceId);
     }
 
-    // Should updating the race be an option?
-/*    @PutMapping("/updaterace/{raceId}")
-    public List<RaceLedger> getRaces(@RequestBody Race race,
+/*    // Should updating the race be an option?*/
+    @PutMapping("/updaterace/{raceId}")
+    public RaceLedger updateEntry(@RequestBody RaceLedger raceLedgerObject,
                                      @PathVariable(value = "raceId") String raceId){
-        return raceLedgerService.updateEntry(raceId).setResults(race);
+        return raceLedgerService.updateEntry(raceId, raceLedgerObject);
     }
 
     @PostMapping("/add")
-    public List<RaceLedger> getRaces(@RequestBody Race race){
-        return raceLedgerService.addEntry(RaceLedger);
-    }*/
+    public RaceLedger addEntry(@RequestBody RaceLedger raceLedgerObject){
+        return raceLedgerService.addEntry(raceLedgerObject);
+    }
 
 
     @GetMapping("{horseName}/record")

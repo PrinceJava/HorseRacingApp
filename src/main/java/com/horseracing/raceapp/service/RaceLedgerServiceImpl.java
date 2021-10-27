@@ -55,27 +55,27 @@ public class RaceLedgerServiceImpl implements RaceLedgerService {
     }
 
     @Override
-    public RaceLedger getRace(String id) {
+    public RaceLedger getRace(String raceId) {
         return null;
     }
 
     @Override
     public RaceLedger addEntry(RaceLedger raceLedger) {
         RaceLedger addedLedger = new RaceLedger();
-        addedLedger.setDate(raceLedger.getDate());
+/*        addedLedger.setDate(raceLedger.getDate());
         addedLedger.setTrackName(raceLedger.getTrackName());
-        addedLedger.setResults(raceLedger.getResults());
-        return raceLedgerRepository.save(addedLedger);
+        addedLedger.setResults(raceLedger.getResults());*/
+        return raceLedgerRepository.save(raceLedger);
     }
 
     @Override
-    public RaceLedger updateEntry(String id) {
+    public RaceLedger updateEntry(String raceId, RaceLedger raceLedgerObject) {
         return null;
     }
 
     @Override
-    public RaceLedger deleteEntry(String id) {
-        return null;
+    public void deleteEntry(String id) {
+
     }
 
     @Override
@@ -97,8 +97,6 @@ public class RaceLedgerServiceImpl implements RaceLedgerService {
             Query query = Query.query(Criteria.where("_id").is(createdLedger.getId()));
             Update update = new Update().push("results").each(result);
             mongoTemplate.upsert(query, update, "raceLedger");
-//            mongoTemplate.updateFirst(Query.query(Criteria.where("id").is(createdLedger.getId()), new Update().push("results", new Result[]{result})));
-//            raceLedgerRepository.save(createdLedger);
         }
     }
 

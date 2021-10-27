@@ -13,10 +13,10 @@ public interface RaceLedgerService {
 
 
     public List<RaceLedger> getRaces();
-    public RaceLedger getRace(String id);
+    public RaceLedger getRace(String raceId);
     public RaceLedger addEntry(RaceLedger raceLedger);
-    public RaceLedger updateEntry(String id);
-    public RaceLedger deleteEntry(String id);
+    public RaceLedger updateEntry(String raceId, RaceLedger raceLedgerObject);
+    public void deleteEntry(String id);
     public void createEntry(String trackName, List<Map.Entry<Horse, Jockey>> results);
     public List<String> getRecord(String horseName);
 
