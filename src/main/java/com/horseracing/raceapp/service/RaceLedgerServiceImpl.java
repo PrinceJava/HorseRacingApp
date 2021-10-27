@@ -1,10 +1,7 @@
 package com.horseracing.raceapp.service;
 
 import com.horseracing.raceapp.exception.InformationNotFoundException;
-import com.horseracing.raceapp.model.Horse;
-import com.horseracing.raceapp.model.Jockey;
-import com.horseracing.raceapp.model.RaceLedger;
-import com.horseracing.raceapp.model.Result;
+import com.horseracing.raceapp.model.*;
 import com.horseracing.raceapp.repository.*;
 import com.horseracing.raceapp.service.interfaces.RaceLedgerService;
 import com.horseracing.raceapp.service.interfaces.RaceService;
@@ -56,26 +53,49 @@ public class RaceLedgerServiceImpl implements RaceLedgerService {
 
     @Override
     public RaceLedger getRace(String raceId) {
-        return null;
+        try {
+            return raceLedgerRepository.findRaceLedgerById(raceId);
+        } catch (NoSuchElementException e){
+            throw new InformationNotFoundException("Race not found");
+        }
     }
 
     @Override
-    public RaceLedger addEntry(RaceLedger raceLedger) {
-        RaceLedger addedLedger = new RaceLedger();
-/*        addedLedger.setDate(raceLedger.getDate());
-        addedLedger.setTrackName(raceLedger.getTrackName());
-        addedLedger.setResults(raceLedger.getResults());*/
+    public RaceLedger addEntry(RaceLedger raceLedger){
         return raceLedgerRepository.save(raceLedger);
     }
 
     @Override
     public RaceLedger updateEntry(String raceId, RaceLedger raceLedgerObject) {
-        return null;
+        try{
+            RaceLedger updateEntry = raceLedgerRepository.findRaceLedgerById(raceId);
+            if(raceLedgerObject.getId() != null){
+                updateEntry.setId(raceLedgerObject.getId());
+            }
+            if(raceLedgerObject.getDate() != null){
+                updateEntry.setDate(raceLedgerObject.getDate());
+            }
+            if(raceLedgerObject.getTrackName() !=null){
+                updateEntry.setTrackName(raceLedgerObject.getTrackName());
+            }
+            if(raceLedgerObject.getResults() != null){
+                updateEntry.setResults(raceLedgerObject.getResults());
+            }
+
+            return raceLedgerRepository.save(updateEntry);
+        }catch (NoSuchElementException e){
+            throw new InformationNotFoundException("Entry not found");
+        }
     }
 
     @Override
     public void deleteEntry(String id) {
-
+    try {
+        RaceLedger raceLedger = raceLedgerRepository.findRaceLedgerById(id);
+        raceLedgerRepository.delete(raceLedger);
+    }catch (NoSuchElementException e) {
+        throw new InformationNotFoundException("No such race found");
+    }
     }
 
     @Override
