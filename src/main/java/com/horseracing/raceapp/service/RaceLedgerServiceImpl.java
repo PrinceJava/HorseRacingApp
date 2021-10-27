@@ -1,5 +1,6 @@
 package com.horseracing.raceapp.service;
 
+import com.horseracing.raceapp.exception.InformationNotFoundException;
 import com.horseracing.raceapp.model.Horse;
 import com.horseracing.raceapp.model.Jockey;
 import com.horseracing.raceapp.model.RaceLedger;
@@ -98,6 +99,26 @@ public class RaceLedgerServiceImpl implements RaceLedgerService {
             mongoTemplate.upsert(query, update, "raceLedger");
 //            mongoTemplate.updateFirst(Query.query(Criteria.where("id").is(createdLedger.getId()), new Update().push("results", new Result[]{result})));
 //            raceLedgerRepository.save(createdLedger);
+        }
+    }
+
+    @Override
+    public List<String> getRecord(String horseName) {
+        try{
+            List<String> horseRecord = new ArrayList<>();
+            Integer first = raceLedgerRepository.getWinsCount(horseName);
+            Integer second = raceLedgerRepository.getSecondCount(horseName);
+            Integer third = raceLedgerRepository.getThirdCount(horseName);
+            Integer total = raceLedgerRepository.getTotalCount(horseName);
+
+            horseRecord.add("Total 1st place finishes: " + first);
+            horseRecord.add("Total 2nd place finishes: " + second);
+            horseRecord.add("Total 3rd place finishes: " + third);
+            horseRecord.add("Total Races: " + total);
+
+            return horseRecord;
+        }catch(NoSuchElementException e){
+            throw new InformationNotFoundException("Information not found");
         }
     }
 }

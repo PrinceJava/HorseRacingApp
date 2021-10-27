@@ -18,5 +18,6 @@ public interface RaceLedgerService {
     public RaceLedger updateEntry(String id);
     public RaceLedger deleteEntry(String id);
     public void createEntry(String trackName, List<Map.Entry<Horse, Jockey>> results);
+    public List<String> getRecord(String horseName);
 
 }

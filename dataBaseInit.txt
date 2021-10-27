@@ -1,0 +1,667 @@
+db.horse.insertMany([
+{
+    "name": "Pegasus",
+    "sex": "male",
+    "weight": "1000",
+    "height": "6.0",
+    "age": "1.5",
+    "speed": "50",
+    "color": "spotted brown",
+    "stamina": "2000",
+    "favCondition": "hard",
+    "worstCondition": "mud"
+},
+{
+    "name": "Zeus",
+    "sex": "male",
+    "weight": "1300",
+    "height": "6.3",
+    "age": "5",
+    "speed": "42",
+    "color": "white",
+    "stamina": "1600",
+    "favCondition": "rain",
+    "worstCondition": "hard"
+},
+{
+    "name": "Hades",
+    "sex": "male",
+    "weight": "1100",
+    "height": "5.0",
+    "age": "1.3",
+    "speed": "55",
+    "color": "brown w/ head stripe",
+    "stamina": "2400",
+    "favCondition": "soft",
+    "worstCondition": "rain"
+},
+{
+    "name": "Tinker Bell",
+    "sex": "female",
+    "weight": "1250",
+    "height": "5.2",
+    "age": "2",
+    "speed": "60",
+    "color": "black w/ head spot",
+    "stamina": "1800",
+    "favCondition": "medium",
+    "worstCondition": "mud"
+},
+{
+    "name": "Repunsel",
+    "sex": "female",
+    "weight": "1400",
+    "height": "5.0",
+    "age": "1",
+    "speed": "49",
+    "color": "red",
+    "stamina": "2100",
+    "favCondition": "mud",
+    "worstCondition": "hard"
+},
+{
+    "name": "Mickey",
+    "sex": "male",
+    "weight": "1400",
+    "height": "5.10",
+    "age": "4",
+    "speed": "62",
+    "color": "spotted gray and white",
+    "stamina": "1600",
+    "favCondition": "medium",
+    "worstCondition": "hard"
+},
+{
+    "name": "Raul",
+    "sex": "male",
+    "weight": "1500",
+    "height": "6.2",
+    "age": "5",
+    "speed": "63",
+    "color": "spotted red w/ head spot",
+    "stamina": "2400",
+    "favCondition": "mud",
+    "worstCondition": "soft"
+},
+{
+    "name": "Suresh",
+    "sex": "male",
+    "weight": "1560",
+    "height": "6.1",
+    "age": "6",
+    "speed": "41",
+    "color": "gray",
+    "stamina": "2200",
+    "favCondition": "rain",
+    "worstCondition": "medium"
+},
+{
+    "name": "Gapetto",
+    "sex": "male",
+    "weight": "1130",
+    "height": "5.10",
+    "age": "2.2",
+    "speed": "40",
+    "color": "spotted black",
+    "stamina": "1600",
+    "favCondition": "soft",
+    "worstCondition": "hard"
+},
+{
+    "name": "HippoTomoato",
+    "sex": "male",
+    "weight": "1200",
+    "height": "6.3",
+    "age": "2",
+    "speed": "59",
+    "color": "brown",
+    "stamina": "2400",
+    "favCondition": "hard",
+    "worstCondition": "medium"
+},
+{
+    "name": "CocoMelon",
+    "sex": "female",
+    "weight": "1500",
+    "height": "5.8",
+    "age": "3",
+    "speed": "61",
+    "color": "black",
+    "stamina": "1900",
+    "favCondition": "mud",
+    "worstCondition": "medium"
+},
+{
+    "name": "SuperMario",
+    "sex": "male",
+    "weight": "1500",
+    "height": "4.10",
+    "age": "",
+    "speed": "50",
+    "color": "spotted brown",
+    "stamina": "2000",
+    "favCondition": "hard",
+    "worstCondition": "mud"
+},
+{
+    "name": "Peach",
+    "sex": "female",
+    "weight": "1400",
+    "height": "5.0",
+    "age": "5",
+    "speed": "60",
+    "color": "peach",
+    "stamina": "2300",
+    "favCondition": "soft",
+    "worstCondition": "rain"
+},
+{
+    "name": "Bowser",
+    "sex": "male",
+    "weight": "1900",
+    "height": "6.6",
+    "age": "6",
+    "speed": "68",
+    "color": "spotted brown",
+    "stamina": "1600",
+    "favCondition": "mud",
+    "worstCondition": "hard"
+}
+])
+db.jockey.insertMany([
+{
+    "name": "Peter",
+    "weight": "120",
+    "height": "4.7",
+    "skillLevel": "8"
+},
+{
+    "name": "Chap",
+    "weight": "115",
+    "height": "4.6",
+    "skillLevel": "3"
+},
+{
+    "name": "Beowoulf",
+    "weight": "101",
+    "height": "4.3",
+    "skillLevel": "7"
+},
+{
+    "name": "Lucy",
+    "weight": "99",
+    "height": "4.1",
+    "skillLevel": "9"
+},
+{
+    "name": "Jans",
+    "weight": "110",
+    "height": "5.0",
+    "skillLevel": "1"
+},
+{
+    "name": "Matty",
+    "weight": "101",
+    "height": "5.3",
+    "skillLevel": "2"
+},
+{
+    "name": "Sparkle",
+    "weight": "101",
+    "height": "4.10",
+    "skillLevel": "5"
+},
+{
+    "name": "Penny",
+    "weight": "101",
+    "height": "4.11",
+    "skillLevel": "5"
+},
+{
+    "name": "Thomas",
+    "weight": "101",
+    "height": "5.3",
+    "skillLevel": "8"
+},
+{
+    "name": "Chantelle",
+    "weight": "101",
+    "height": "5.1",
+    "skillLevel": "9"
+},
+{
+    "name": "Scotty",
+    "weight": "101",
+    "height": "5.1",
+    "skillLevel": "3"
+},
+{
+    "name": "Griswold",
+    "weight": "101",
+    "height": "4.10",
+    "skillLevel": "5"
+},
+{
+    "name": "Daniel",
+    "weight": "101",
+    "height": "4.11",
+    "skillLevel": "4"
+},
+{
+    "name": "Kryptic",
+    "weight": "101",
+    "height": "4.10",
+    "skillLevel": "6"
+}])
+db.track.insertMany([
+{
+    "name": "Belmont",
+    "condition": "medium",
+    "length": "2400"
+},
+{
+    "name": "Churchill Downs",
+    "condition": "hard",
+    "length": "2500"
+},
+{
+    "name": "Arlington Park",
+    "condition": "soft",
+    "length": "2400"
+},
+{
+    "name": "Monmouth Park",
+    "condition": "mud",
+    "length": "1700"
+},
+{
+    "name": "Saratoga Race Course",
+    "condition": "rain",
+    "length": "1900"
+},
+{
+    "name": "Pimlico Park",
+    "condition": "medium",
+    "length": "2400"
+},
+{
+    "name": "Keeneland Race Course",
+    "condition": "hard",
+    "length": "2300"
+},
+{
+    "name": "Oaklawn Park",
+    "condition": "soft",
+    "length": "1800"
+},
+{
+    "name": "Belmont",
+    "condition": "mud",
+    "length": "2100"
+},
+{
+    "name": "Del Mar Race Track",
+    "condition": "rain",
+    "length": "2000"
+},
+{
+    "name": "Santa Anita Park",
+    "condition": "hard",
+    "length": "1609"
+}])
+db.raceLedger.insertMany([
+{
+        "_id" : ObjectId("61797c237bf59c7f5a530815"),
+        "trackName" : "Keeneland Race Course",
+        "date" : ISODate("2021-10-27T16:19:47.651Z"),
+        "_class" : "com.horseracing.raceapp.model.RaceLedger",
+        "results" : [
+                {
+                        "place" : "1",
+                        "horse" : "Raul",
+                        "finalSpeed" : "64.83226372518091",
+                        "jockey" : "Chantelle",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "2",
+                        "horse" : "Bowser",
+                        "finalSpeed" : "61.6522517797767",
+                        "jockey" : "Penny",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "3",
+                        "horse" : "CocoMelon",
+                        "finalSpeed" : "59.50251166197461",
+                        "jockey" : "Kryptic",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "4",
+                        "horse" : "HippoTomoato",
+                        "finalSpeed" : "58.569003854228875",
+                        "jockey" : "Jans",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "5",
+                        "horse" : "Pegasus",
+                        "finalSpeed" : "54.956031109765334",
+                        "jockey" : "Sparkle",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "6",
+                        "horse" : "SuperMario",
+                        "finalSpeed" : "53.71846707345648",
+                        "jockey" : "Chap",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "7",
+                        "horse" : "Mickey",
+                        "finalSpeed" : "52.0738915418595",
+                        "jockey" : "Griswold",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "8",
+                        "horse" : "Repunsel",
+                        "finalSpeed" : "39.05983243121783",
+                        "jockey" : "Matty",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "9",
+                        "horse" : "Zeus",
+                        "finalSpeed" : "36.51233522427596",
+                        "jockey" : "Thomas",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                }
+        ]
+},
+{
+        "_id" : ObjectId("61797c247bf59c7f5a530816"),
+        "trackName" : "Keeneland Race Course",
+        "date" : ISODate("2021-10-27T16:19:48.961Z"),
+        "_class" : "com.horseracing.raceapp.model.RaceLedger",
+        "results" : [
+                {
+                        "place" : "1",
+                        "horse" : "Raul",
+                        "finalSpeed" : "68.24758606072002",
+                        "jockey" : "Chantelle",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "2",
+                        "horse" : "HippoTomoato",
+                        "finalSpeed" : "68.2408291630169",
+                        "jockey" : "Kryptic",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "3",
+                        "horse" : "Tinker Bell",
+                        "finalSpeed" : "62.11500400204299",
+                        "jockey" : "Peter",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "4",
+                        "horse" : "CocoMelon",
+                        "finalSpeed" : "58.41578272947749",
+                        "jockey" : "Beowoulf",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "5",
+                        "horse" : "SuperMario",
+                        "finalSpeed" : "50.64628099464611",
+                        "jockey" : "Scotty",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "6",
+                        "horse" : "Hades",
+                        "finalSpeed" : "50.046825031638846",
+                        "jockey" : "Matty",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "7",
+                        "horse" : "Repunsel",
+                        "finalSpeed" : "40.09774375145153",
+                        "jockey" : "Jans",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "8",
+                        "horse" : "Zeus",
+                        "finalSpeed" : "31.58268927200914",
+                        "jockey" : "Chap",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "9",
+                        "horse" : "Gapetto",
+                        "finalSpeed" : "30.2014897397456",
+                        "jockey" : "Sparkle",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                }
+        ]
+},
+{
+        "_id" : ObjectId("61797c257bf59c7f5a530817"),
+        "trackName" : "Keeneland Race Course",
+        "date" : ISODate("2021-10-27T16:19:49.795Z"),
+        "_class" : "com.horseracing.raceapp.model.RaceLedger",
+        "results" : [
+                {
+                        "place" : "1",
+                        "horse" : "HippoTomoato",
+                        "finalSpeed" : "65.92570583427168",
+                        "jockey" : "Kryptic",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "2",
+                        "horse" : "Raul",
+                        "finalSpeed" : "61.299853224084956",
+                        "jockey" : "Chantelle",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "3",
+                        "horse" : "Bowser",
+                        "finalSpeed" : "58.29057490882878",
+                        "jockey" : "Chap",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "4",
+                        "horse" : "SuperMario",
+                        "finalSpeed" : "53.07959302772862",
+                        "jockey" : "Lucy",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "5",
+                        "horse" : "Pegasus",
+                        "finalSpeed" : "52.864987908081766",
+                        "jockey" : "Thomas",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "6",
+                        "horse" : "Hades",
+                        "finalSpeed" : "52.56882557579792",
+                        "jockey" : "Penny",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "7",
+                        "horse" : "Repunsel",
+                        "finalSpeed" : "44.93398257502909",
+                        "jockey" : "Peter",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "8",
+                        "horse" : "Suresh",
+                        "finalSpeed" : "42.25625448698858",
+                        "jockey" : "Griswold",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "9",
+                        "horse" : "Gapetto",
+                        "finalSpeed" : "31.634722782020212",
+                        "jockey" : "Sparkle",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                }
+        ]
+},
+{
+        "_id" : ObjectId("61797c267bf59c7f5a530818"),
+        "trackName" : "Keeneland Race Course",
+        "date" : ISODate("2021-10-27T16:19:50.643Z"),
+        "_class" : "com.horseracing.raceapp.model.RaceLedger",
+        "results" : [
+                {
+                        "place" : "1",
+                        "horse" : "Raul",
+                        "finalSpeed" : "65.78072573491542",
+                        "jockey" : "Chantelle",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "2",
+                        "horse" : "HippoTomoato",
+                        "finalSpeed" : "65.31384537230704",
+                        "jockey" : "Griswold",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "3",
+                        "horse" : "CocoMelon",
+                        "finalSpeed" : "61.27747069067993",
+                        "jockey" : "Kryptic",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "4",
+                        "horse" : "Hades",
+                        "finalSpeed" : "59.68562099451832",
+                        "jockey" : "Lucy",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "5",
+                        "horse" : "Pegasus",
+                        "finalSpeed" : "55.0034106995589",
+                        "jockey" : "Peter",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "6",
+                        "horse" : "Mickey",
+                        "finalSpeed" : "49.95392269621034",
+                        "jockey" : "Jans",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "7",
+                        "horse" : "Suresh",
+                        "finalSpeed" : "40.44265328688392",
+                        "jockey" : "Thomas",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "8",
+                        "horse" : "Gapetto",
+                        "finalSpeed" : "34.47694356727298",
+                        "jockey" : "Beowoulf",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "9",
+                        "horse" : "Zeus",
+                        "finalSpeed" : "32.28298708278842",
+                        "jockey" : "Matty",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                }
+        ]
+},
+{
+        "_id" : ObjectId("61797c277bf59c7f5a530819"),
+        "trackName" : "Keeneland Race Course",
+        "date" : ISODate("2021-10-27T16:19:51.363Z"),
+        "_class" : "com.horseracing.raceapp.model.RaceLedger",
+        "results" : [
+                {
+                        "place" : "1",
+                        "horse" : "Raul",
+                        "finalSpeed" : "65.3109130471212",
+                        "jockey" : "Chantelle",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "2",
+                        "horse" : "CocoMelon",
+                        "finalSpeed" : "62.798082201468624",
+                        "jockey" : "Kryptic",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "3",
+                        "horse" : "Tinker Bell",
+                        "finalSpeed" : "61.863901721001895",
+                        "jockey" : "Beowoulf",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "4",
+                        "horse" : "SuperMario",
+                        "finalSpeed" : "58.547950024144946",
+                        "jockey" : "Peter",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "5",
+                        "horse" : "Mickey",
+                        "finalSpeed" : "57.65936523754689",
+                        "jockey" : "Lucy",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "6",
+                        "horse" : "Pegasus",
+                        "finalSpeed" : "50.98319781021657",
+                        "jockey" : "Griswold",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "7",
+                        "horse" : "Repunsel",
+                        "finalSpeed" : "41.461072330737494",
+                        "jockey" : "Chap",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "8",
+                        "horse" : "Suresh",
+                        "finalSpeed" : "41.27647054500996",
+                        "jockey" : "Sparkle",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                },
+                {
+                        "place" : "9",
+                        "horse" : "Zeus",
+                        "finalSpeed" : "32.44808824522633",
+                        "jockey" : "Scotty",
+                        "_class" : "com.horseracing.raceapp.model.Result"
+                }
+        ]
+}])
