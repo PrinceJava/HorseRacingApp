@@ -132,14 +132,25 @@ This project consists of:
     and after rebuilding the class, the error persisted. This idea was scrapped as the error 
     may be system related. 
 
-2. One to many
+2. NoSQL Relationships and Embedded and Referenced Documents were the first challenge.
+When creating the horses, we wanted to add a horse to a stable, and populate a list of all horses in the stable.  
+At time of writing the project, we didn't know a solution to this problem.  Also with our Race Ledger Results, 
+one of our main goals was to have places stored for each horse/jockey.  
+We tried multiple approaches to store an object inside a list of another object (Document)
+First attempt was .getList().add(object) then .setList(.getList()) but this quickly backfired.
+Next step was to work on custom queries inside each Repository, but was unable to get $push to work
+Mongo Template was the class we utilized to complete this, and can be found in the RaceLedgerServiceImpl createEntry() method.
 
 3. Queries
+As stated above, creating customer queries inside Mongo proved to be challenging, was in when do we need to use referenced methods or not
+and how do we create multiple arguments in a custom query.
 
 4. ref docs vs external docs
-
+Initial set up of the Schema proved to be challenging as we had to so quite a bit of research on proper Schema regarding should 
+documents be or just embedded objects.  Ultimately we used a concoction of the two. 
 5. database init
-
+With CommandLine Runner in Relational Databases schemas such as JPA and Postgres, the add and init was quite easy.
+NoSQL proved to be a more complicated project, and ultimately we created a txt file for quick initialization of data.
 
 
 ## Thanks for Playing
