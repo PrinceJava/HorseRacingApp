@@ -2,21 +2,29 @@ package com.horseracing.raceapp.service;
 
 import com.horseracing.raceapp.exception.InformationNotFoundException;
 import com.horseracing.raceapp.model.*;
-import com.horseracing.raceapp.model.forms.RaceForm;
 import com.horseracing.raceapp.repository.*;
 import com.horseracing.raceapp.service.interfaces.RaceLedgerService;
 import com.horseracing.raceapp.service.interfaces.RaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/*
+ * HORSE RACING APP
+ * ---- RACE SERVICE IMPL ------
+ *   Race - Initialize starting a race, stating with Horse, Jockey, and Track
+ *   Race Ledger - Record NoSQL Document that houses all previous records
+ *
+ *   Start Race will take input, generate a full list of racers
+ *      Adjust each speed based off Horse, Track, and Jockey Variables
+ *      Create a Set of sorted Entries descending based off speed
+ *      Send that to Race Ledger Create Entry to record results
+ * */
+
 @Service
 public class RaceServiceImpl implements RaceService {
-
-
 
     @Autowired
     HorseRepository horseRepository;
@@ -34,6 +42,25 @@ public class RaceServiceImpl implements RaceService {
     RaceLedgerService raceLedgerService;
 
 
+    /**
+     * Horse Race Logic included here.  Steps included
+     * 1. Take Selected input and assign each element to selected Variable
+     *      a. selectedHorse - Horse based off Horse Name
+     *      b. selectedJockey - Jockey based off Jockey Name
+     *      c. selectedTrack - Track based off Track Name
+     * 2. Create Random object random for Random Number Generator to be used in:
+     *      a. Generating Random Jockey and Horse pairs
+     *      b. Generating element of Chance variable for speed
+     * 3. Create Hashtable Racer that will consist of all Horse - Jockey pairs in the race
+     * 4. Create a list of all horses and jockeys, and remove the horse and jockey if they
+     *      are the same as selected Jockey and horse, to remove duplicates
+     * 5. Do a for loop through the size of the race (STATIC IN THIS APP TO 8) + selected = 9 total
+     * 6. Add the horse - jockey combo to the racer HashSet
+     * 7. Remove each horse/jockey from respective lists to prevent the same horse being selected twice.
+     * @param horseName - horseName to be used to find the Horse Object
+     * @param jockeyName - jockeyName to be used to find the Jockey Object
+     * @param trackName - Track Name to be used to find the Track Object
+     */
     @Override
     public void startRace(String horseName, String jockeyName, String trackName) {
         System.out.println("Calling CategoryService createCategory ==>");
@@ -57,6 +84,14 @@ public class RaceServiceImpl implements RaceService {
                     horses.remove(randomHorseIndex);
                     jockeys.remove(randomJockeyIndex);
                 }
+    /*
+    * 8. Create a Set - entrySet from HashSet Racer.entrySet() to loop through each pair
+    * 9. Start with Conditions, if Either Favorite or Worst Condition match track.getCondition, + or - 5
+    * 10. Create the difference of horse stamina and track distance - Math.abs to ensure they are positive numbers
+    *   a. use If - Else-If to determine is diff is in selected range, if it is, subtract from total speed.
+    * 11. Create a Switch statement based off Jockey Skill Level, and subtract from Horse speed based off value
+    * 12.
+    * */
             Set<Map.Entry<Horse, Jockey>> entrySet
                     = racer.entrySet();
 
@@ -110,12 +145,18 @@ public class RaceServiceImpl implements RaceService {
                     default:
                         break;
                 }
-
+    /*
+    * 13. for Each Horse - Jockey entry in entrySet, generate a random number between -5% and +5% and change the value
+    *       of speed by that amount (horse speed - horse speed * randomMultiplier) to generate final speed
+    * 14. Each change in Set will alter the HashSet racer, so take racer and convert it to List<Map.Entry<Horse,Jockey>
+            racer.entrySet() -> stream() -> sorted(Map.Entry Compare Horse::getSpeed()) -> reversed() -> Collect to List
+    * 15. Print each entry of sorted List to console showing horse, speed, and jockey to verify expected results
+    * 16. Send Track Name and Results List to raceLedgerService.createEntry() to add race to ledger.
+    * */
                 double min = -0.05;
                 double max = 0.05;
                 double randomMultiplayer = random.nextDouble() * (max - min + 0.01) + min;
                 entry.getKey().setSpeed(String.valueOf(Integer.parseInt(entry.getKey().getSpeed()) - (Integer.parseInt(entry.getKey().getSpeed()) * randomMultiplayer)));
-
             }
             List<Map.Entry<Horse, Jockey>> results = racer.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.comparing(Horse::getSpeed).reversed())).collect(Collectors.toList());/*.forEach(System.out::println);*/
 

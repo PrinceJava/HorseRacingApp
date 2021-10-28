@@ -1,10 +1,6 @@
 package com.horseracing.raceapp.controller;
 
-import com.horseracing.raceapp.exception.InformationNotFoundException;
-import com.horseracing.raceapp.model.Horse;
-import com.horseracing.raceapp.model.Race;
 import com.horseracing.raceapp.model.RaceLedger;
-import com.horseracing.raceapp.model.forms.AddHorseToStableForm;
 import com.horseracing.raceapp.model.forms.RaceForm;
 import com.horseracing.raceapp.service.interfaces.HorseService;
 import com.horseracing.raceapp.service.interfaces.RaceLedgerService;
@@ -15,7 +11,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
-import java.util.NoSuchElementException;
+
+/*
+ * HORSE RACING APP
+ * ---- RACE LEDGER CONTROLLER ------
+ *   Race Ledger - Record NoSQL Document that houses all previous records
+ *      Takes in RaceForm and send variables to the RaceServiceImpl Service startRace
+ *
+ * */
 
 @RestController
 @RequestMapping("/api/")
@@ -31,13 +34,16 @@ public class RaceLedgerController {
     RaceService raceService;
 
 
-    //TODO CRUD for RACE LEDGER
-
     @GetMapping("/allraces")
     public List<RaceLedger> getRaces() {
         return raceLedgerService.getRaces();
     }
 
+    /**
+     * This endpoint will start the race
+     * @param form - intake body for race, including - horseName, jockeyName, trackName
+     * @return response Entity 201 for a race was created
+     */
     @GetMapping("/race")
     public ResponseEntity<?> startRace(@RequestBody RaceForm form) {
         System.out.println("Starting Race");

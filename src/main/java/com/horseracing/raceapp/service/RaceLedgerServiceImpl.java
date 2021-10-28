@@ -4,16 +4,9 @@ import com.horseracing.raceapp.exception.InformationNotFoundException;
 import com.horseracing.raceapp.model.*;
 import com.horseracing.raceapp.repository.*;
 import com.horseracing.raceapp.service.interfaces.RaceLedgerService;
-import com.horseracing.raceapp.service.interfaces.RaceService;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
 import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.conversions.Bson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
@@ -21,6 +14,18 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.*;
+
+/*
+ * HORSE RACING APP
+ * ---- RACE LEDGER SERVICE IMPL ------
+ *   Race Ledger - Record NoSQL Document that houses all previous records
+ *      CRUD FUNCTIONS including GET, GET ALL, UPDATE, DELETE
+ *
+ *      CREATE ENTRY - takes input from raceServiceImpl - startRace()
+ *                      generates entry in ledger
+ *
+ * Get Record - gets record of input horseName including count of first, second, third, and total races
+ * */
 
 @Service
 public class RaceLedgerServiceImpl implements RaceLedgerService {
@@ -98,6 +103,17 @@ public class RaceLedgerServiceImpl implements RaceLedgerService {
     }
     }
 
+    /**
+     * Create Entry method takes in List of sorted Results and Track Name and creates a ledger Entry
+     * 1. Create a Race Ledger object createdLedger to store variable Track, Date&Time.
+     * 2. Save that object to the ledger with no results
+     * 3. Create Results Object results that will loop through all rows or Results List:
+     *      a. Overwrite any values with current entries Horse Name, Jockey Name, Horse Speed
+     * 4. Utilize Query and Update objects to find the RaceLedger Object and push results with each field of Result obj.
+     * 5. Use mongoTemplate.upsert to add all Updated Changes to Query Object of createdLedger
+     * @param trackName - selectedTrack from startRace
+     * @param results - List of Horse Jockeys, sorted by horse final speed
+     */
     @Override
     public void createEntry(String trackName, List<Map.Entry<Horse, Jockey>> results) {
 
@@ -120,6 +136,13 @@ public class RaceLedgerServiceImpl implements RaceLedgerService {
         }
     }
 
+    /**
+     * Get Record utilizes RaceLedgerRepository Custom Queries to generate variables
+     * Ints are created by searching all RaceLedger Entries and counting times name and place match
+     * Create an ArrayList() to store all the string values from the ints and return that Array List to the console
+     * @param horseName - passed from JSON body
+     * @return - List of Strings
+     */
     @Override
     public List<String> getRecord(String horseName) {
         try{
