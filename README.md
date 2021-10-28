@@ -144,7 +144,7 @@ This project consists of:
 
 ##Thanks for Playing
 
-###**Go Seabiscuit!** 
+##**Go Seabiscuit!** 
 
 
 ![img_6.png](Image/images/img_6.png)
