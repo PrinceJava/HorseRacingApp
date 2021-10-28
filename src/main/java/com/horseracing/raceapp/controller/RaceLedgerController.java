@@ -35,8 +35,8 @@ public class RaceLedgerController {
 
 
     @GetMapping("/allraces")
-    public List<RaceLedger> getRaces() {
-        return raceLedgerService.getRaces();
+    public ResponseEntity<List<RaceLedger>> getRaces() {
+        return ResponseEntity.ok().body(raceLedgerService.getRaces());
     }
 
     /**
@@ -53,30 +53,33 @@ public class RaceLedgerController {
     }
 
     @GetMapping("/{raceId}")
-    public RaceLedger getRace(@PathVariable(value = "raceId") String raceId) {
-        return raceLedgerService.getRace(raceId);
+    public ResponseEntity<RaceLedger> getRace(@PathVariable(value = "raceId") String raceId) {
+        return ResponseEntity.ok().body(raceLedgerService.getRace(raceId));
     }
 
     @DeleteMapping("/delete/{raceId}")
-    public void deleteRaceId(@PathVariable(value = "raceId") String raceId){
+    public ResponseEntity<?> deleteRaceId(@PathVariable(value = "raceId") String raceId){
         raceLedgerService.deleteEntry(raceId);
+        return ResponseEntity.ok().build();
     }
 
 /*    // Should updating the race be an option?*/
     @PutMapping("/updaterace/{raceId}")
-    public RaceLedger updateEntry(@RequestBody RaceLedger raceLedgerObject,
+    public ResponseEntity<RaceLedger> updateEntry(@RequestBody RaceLedger raceLedgerObject,
                                      @PathVariable(value = "raceId") String raceId){
-        return raceLedgerService.updateEntry(raceId, raceLedgerObject);
+
+        return ResponseEntity.accepted().body(raceLedgerService.updateEntry(raceId, raceLedgerObject));
     }
 
     @PostMapping("/add")
-    public RaceLedger addEntry(@RequestBody RaceLedger raceLedgerObject){
-        return raceLedgerService.addEntry(raceLedgerObject);
+    public ResponseEntity<RaceLedger> addEntry(@RequestBody RaceLedger raceLedgerObject){
+        URI uri = URI.create("/com.horseracingapp.raceapp/raceledgercontroller/addEntry/");
+        return ResponseEntity.created(uri).body(raceLedgerService.addEntry(raceLedgerObject));
     }
 
 
     @GetMapping("{horseName}/record")
-    public List<String> getRecord(@PathVariable(value = "horseName") String horseName){
-        return raceLedgerService.getRecord(horseName);
+    public ResponseEntity<List<String>> getRecord(@PathVariable(value = "horseName") String horseName){
+        return ResponseEntity.ok().body(raceLedgerService.getRecord(horseName));
     }
 }

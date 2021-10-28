@@ -8,8 +8,10 @@ import com.horseracing.raceapp.model.forms.DeleteTrackForm;
 import com.horseracing.raceapp.service.interfaces.StableService;
 import com.horseracing.raceapp.service.interfaces.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -21,28 +23,30 @@ public class TrackController {
 
 
     @GetMapping("/list")
-    public List<Track> listTracks(){
-        return trackService.listTracks();
+    public ResponseEntity<List<Track>> listTracks(){
+        return ResponseEntity.ok().body(trackService.listTracks());
     }
 
     @GetMapping("/{trackName}")
-    public Track getTrack(@PathVariable(value = "trackName") String trackName){
-        return trackService.getTrack(trackName);
+    public ResponseEntity<Track> getTrack(@PathVariable(value = "trackName") String trackName){
+        return ResponseEntity.ok().body(trackService.getTrack(trackName));
     }
 
     @PostMapping("/add")
-    public Track saveTrack(@RequestBody Track track){
-        return trackService.saveTrack(track);
+    public ResponseEntity<Track> saveTrack(@RequestBody Track track){
+        URI uri = URI.create("/com.horseracingapp.raceapp/trackcontroller/saveTrack/");
+        return ResponseEntity.created(uri).body(trackService.saveTrack(track));
     }
 
     @PutMapping("/update/{trackName}")
-    public Track updateTrack(@RequestBody Track track,
+    public ResponseEntity<Track> updateTrack(@RequestBody Track track,
                                @PathVariable(value = "trackName")String trackName){
-        return trackService.updateTrack(track, trackName);
+        return ResponseEntity.accepted().body(trackService.updateTrack(track, trackName));
     }
 
     @DeleteMapping("/delete")
-    public void deleteTrack(@RequestBody DeleteTrackForm form){
+    public ResponseEntity<?> deleteTrack(@RequestBody DeleteTrackForm form){
         trackService.deleteTrack(form.getTrackName());
+        return ResponseEntity.ok().build();
     }
 }

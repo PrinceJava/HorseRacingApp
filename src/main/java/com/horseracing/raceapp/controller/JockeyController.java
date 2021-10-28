@@ -7,8 +7,10 @@ import com.horseracing.raceapp.model.forms.DeleteJockeyForm;
 import com.horseracing.raceapp.service.interfaces.JockeyService;
 import com.horseracing.raceapp.service.interfaces.StableService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -20,28 +22,31 @@ public class JockeyController {
 
 
     @GetMapping("/list")
-    public List<Jockey> listJockeys(){
-        return jockeyService.listJockeys();
+    public ResponseEntity<List<Jockey>> listJockeys(){
+        return ResponseEntity.ok().body(jockeyService.listJockeys());
     }
 
     @GetMapping("/{jockeyName}")
-    public Jockey getJockey(@PathVariable(value = "jockeyName") String jockeyName){
-        return jockeyService.getJockey(jockeyName);
+    public ResponseEntity<Jockey> getJockey(@PathVariable(value = "jockeyName") String jockeyName){
+        return ResponseEntity.ok().body(jockeyService.getJockey(jockeyName));
     }
 
     @PostMapping("/add")
-    public Jockey saveJockey(@RequestBody Jockey jockey){
-        return jockeyService.saveJockey(jockey);
+    public ResponseEntity<Jockey> saveJockey(@RequestBody Jockey jockey){
+        URI uri = URI.create("/com.horseracingapp.raceapp/jockeycontroller/saveJockey/");
+        return ResponseEntity.created(uri).body(jockeyService.saveJockey(jockey));
     }
 
     @PutMapping("/update/{jockeyName}")
-    public Jockey updateJockey(@RequestBody Jockey jockey,
+    public ResponseEntity<Jockey> updateJockey(@RequestBody Jockey jockey,
                                @PathVariable(value = "jockeyName") String jockeyName){
-        return jockeyService.updateJockey(jockey, jockeyName);
+        URI uri = URI.create("/com.horseracingapp.raceapp/jockeycontroller/updateJockey/");
+        return ResponseEntity.created(uri).body(jockeyService.updateJockey(jockey, jockeyName));
     }
 
     @DeleteMapping("/delete")
-    public void deleteJockey(@RequestBody DeleteJockeyForm form){
+    public ResponseEntity<?> deleteJockey(@RequestBody DeleteJockeyForm form){
         jockeyService.deleteJockey(form.getJockeyName());
+        return ResponseEntity.ok().build();
     }
 }
