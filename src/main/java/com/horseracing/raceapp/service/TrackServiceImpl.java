@@ -47,6 +47,12 @@ public class TrackServiceImpl implements TrackService {
             if (track.getName() != null) {
                 updateTrack.setName(track.getName());
             }
+            if (track.getCondition() != null) {
+                updateTrack.setCondition(track.getCondition());
+            }
+            if (track.getLength() != null) {
+                updateTrack.setLength(track.getLength());
+            }
             return trackRepository.save(updateTrack);
         } catch (NoSuchElementException e) {
             throw new InformationNotFoundException("Track not found");
