@@ -139,10 +139,12 @@ This project consists of:
 4. ref docs vs external docs
 
 5. database init
-   
-6.0 
+
 
 
 ##Thanks for Playing
- ###**Go Seabiscuit!** 
+
+###**Go Seabiscuit!** 
+
+
 ![img_6.png](Image/images/img_6.png)
