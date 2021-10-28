@@ -30,11 +30,13 @@ public class JockeyServiceImpl implements JockeyService {
 
     @Override
     public List<Jockey> listJockeys() {
+        System.out.println("JOCKEY SERVICE CALLING listJockeys ==>");
         return jockeyRepository.findAll();
     }
 
     @Override
     public Jockey getJockey(String jockeyName) {
+        System.out.println("JOCKEY SERVICE CALLING getJockey ==>");
         try{
          Jockey jockey = jockeyRepository.findJockeyByName(jockeyName);
          return jockey;
@@ -45,8 +47,7 @@ public class JockeyServiceImpl implements JockeyService {
 
     @Override
     public Jockey saveJockey(Jockey jockey) {
-        // potential error on value bounds.  come back to this later
-        // thinking of weight, height, and skill limits parseInt values
+        System.out.println("JOCKEY SERVICE CALLING saveJockey ==>");
         Jockey newJockey = new Jockey();
         newJockey.setName(jockey.getName());
         newJockey.setHeight(jockey.getHeight());
@@ -57,6 +58,7 @@ public class JockeyServiceImpl implements JockeyService {
 
     @Override
     public Jockey updateJockey(Jockey jockey, String jockeyName) {
+        System.out.println("JOCKEY SERVICE CALLING updateJockey ==>");
         try{
             Jockey updatedJockey = jockeyRepository.findJockeyByName(jockeyName);
             if(jockey.getName() != null){
@@ -79,6 +81,7 @@ public class JockeyServiceImpl implements JockeyService {
 
     @Override
     public void deleteJockey(String jockeyName) {
+        System.out.println("JOCKEY SERVICE CALLING deleteJockeys ==>");
         try {
             Jockey jockey = jockeyRepository.findJockeyByName(jockeyName);
             jockeyRepository.delete(jockey);

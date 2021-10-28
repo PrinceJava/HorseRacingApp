@@ -53,11 +53,13 @@ public class RaceLedgerServiceImpl implements RaceLedgerService {
 
     @Override
     public List<RaceLedger> getRaces() {
+        System.out.println("RACE LEDGER SERVICE CALLING getRaces ==>");
         return raceLedgerRepository.findAll();
     }
 
     @Override
     public RaceLedger getRace(String raceId) {
+        System.out.println("RACE LEDGER SERVICE CALLING getRace ==>");
         try {
             return raceLedgerRepository.findRaceLedgerById(raceId);
         } catch (NoSuchElementException e){
@@ -67,11 +69,13 @@ public class RaceLedgerServiceImpl implements RaceLedgerService {
 
     @Override
     public RaceLedger addEntry(RaceLedger raceLedger){
+        System.out.println("RACE LEDGER SERVICE CALLING addEntry ==>");
         return raceLedgerRepository.save(raceLedger);
     }
 
     @Override
     public RaceLedger updateEntry(String raceId, RaceLedger raceLedgerObject) {
+        System.out.println("RACE LEDGER SERVICE CALLING updateEntry ==>");
         try{
             RaceLedger updateEntry = raceLedgerRepository.findRaceLedgerById(raceId);
             if(raceLedgerObject.getId() != null){
@@ -95,6 +99,7 @@ public class RaceLedgerServiceImpl implements RaceLedgerService {
 
     @Override
     public void deleteEntry(String id) {
+        System.out.println("RACE LEDGER SERVICE CALLING deleteEntry ==>");
     try {
         RaceLedger raceLedger = raceLedgerRepository.findRaceLedgerById(id);
         raceLedgerRepository.delete(raceLedger);
@@ -116,6 +121,7 @@ public class RaceLedgerServiceImpl implements RaceLedgerService {
      */
     @Override
     public void createEntry(String trackName, List<Map.Entry<Horse, Jockey>> results) {
+        System.out.println("RACE LEDGER SERVICE CALLING createEntry ==>");
 
         RaceLedger createdLedger = new RaceLedger();
         createdLedger.setDate(LocalDateTime.now());
@@ -145,6 +151,7 @@ public class RaceLedgerServiceImpl implements RaceLedgerService {
      */
     @Override
     public List<String> getRecord(String horseName) {
+        System.out.println("RACE LEDGER SERVICE CALLING getRecord ==>");
         try{
             List<String> horseRecord = new ArrayList<>();
             Integer first = raceLedgerRepository.getWinsCount(horseName);

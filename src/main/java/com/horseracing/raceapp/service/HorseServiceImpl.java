@@ -28,11 +28,13 @@ public class HorseServiceImpl implements HorseService {
 
     @Override
     public List<Horse> listHorses() {
+        System.out.println("HORSE SERVICE CALLING listHorse ==>");
         return horseRepository.findAll();
     }
 
     @Override
     public Horse createHorse(Horse horse) {
+        System.out.println("HORSE SERVICE CALLING createHorse ==>");
         Horse newHorse = new Horse();
         newHorse.setName(horse.getName());
         newHorse.setAge(horse.getAge());
@@ -50,6 +52,7 @@ public class HorseServiceImpl implements HorseService {
 
     @Override
     public Horse updateHorse(Horse horse, String horseName) {
+        System.out.println("HORSE SERVICE CALLING updateHorse ==>");
         try{
             Horse horse1 = horseRepository.findHorseByName(horseName);
             if(horse.getName() != null) {
@@ -94,6 +97,7 @@ public class HorseServiceImpl implements HorseService {
 
     @Override
     public void deleteHorse(String name) {
+        System.out.println("HORSE SERVICE CALLING deleteHorse ==>");
         System.out.println("Horse Service Delete Horse ====>");
         try{
             Horse horse = horseRepository.findHorseByName(name);
@@ -105,6 +109,7 @@ public class HorseServiceImpl implements HorseService {
 
     @Override
     public Horse getHorse(String horseName) {
+        System.out.println("HORSE SERVICE CALLING getHorse ==>");
        try {
            return horseRepository.findHorseByName(horseName);
        }catch(NoSuchElementException e) {
@@ -114,6 +119,7 @@ public class HorseServiceImpl implements HorseService {
 
     @Override
     public Horse addHorseToStable(AddHorseToStableForm form) {
+        System.out.println("HORSE SERVICE CALLING addHorseToStable ==>");
         try {
             Stable stable = stableRepository.findByStableName(form.getStableName());
             Horse horse = horseRepository.findHorseByName(form.getHorseName());

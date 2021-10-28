@@ -23,16 +23,19 @@ public class TrackServiceImpl implements TrackService {
 
     @Override
     public List<Track> listTracks() {
+        System.out.println("TRACK SERVICE CALLING listTracks ==>");
         return trackRepository.findAll();
     }
 
     @Override
     public Track getTrack(String trackName) {
+        System.out.println("TRACK SERVICE CALLING getTrack ==>");
         return trackRepository.findTrackByName(trackName);
     }
 
     @Override
     public Track saveTrack(Track track) {
+        System.out.println("TRACK SERVICE CALLING saveTrack ==>");
         Track newTrack = new Track();
         newTrack.setName(track.getName());
         newTrack.setCondition(track.getCondition());
@@ -42,6 +45,7 @@ public class TrackServiceImpl implements TrackService {
 
     @Override
     public Track updateTrack(Track track, String trackName) {
+        System.out.println("TRACK SERVICE CALLING updateTrack ==>");
         try {
             Track updateTrack = trackRepository.findTrackByName(trackName);
             if (track.getName() != null) {
@@ -61,6 +65,7 @@ public class TrackServiceImpl implements TrackService {
 
     @Override
     public void deleteTrack(String trackName) {
+        System.out.println("TRACK SERVICE CALLING deleteTrack ==>");
         try {
             Track track = trackRepository.findTrackByName(trackName);
             trackRepository.delete(track);

@@ -23,11 +23,13 @@ public class StableServiceImpl implements StableService {
 
     @Override
     public List<Stable> listStables() {
+        System.out.println("STABLE SERVICE CALLING listStables ==>");
         return stableRepository.findAll();
     }
 
     @Override
     public Stable getStable(String stableName) {
+        System.out.println("STABLE SERVICE CALLING getStable ==>");
         try{
             Stable stable = stableRepository.findByStableName(stableName);
             return stable;
@@ -38,6 +40,7 @@ public class StableServiceImpl implements StableService {
 
     @Override
     public Stable saveStable(Stable stable) {
+        System.out.println("STABLE SERVICE CALLING saveStable ==>");
         Stable newStable = new Stable();
         newStable.setName(stable.getName());
         return stableRepository.save(newStable);
@@ -45,6 +48,7 @@ public class StableServiceImpl implements StableService {
 
     @Override
     public Stable updateStable(String stableName, Stable stable) {
+        System.out.println("STABLE SERVICE CALLING updateStable ==>");
         try{
             Stable updatedStable = stableRepository.findByStableName(stableName);
             if(stable.getName() != null){
@@ -58,6 +62,7 @@ public class StableServiceImpl implements StableService {
 
     @Override
     public void deleteStable(String stableName) {
+        System.out.println("STABLE SERVICE CALLING deleteStable ==>");
         try{
             Stable stable = stableRepository.findByStableName(stableName);
             stableRepository.delete(stable);
@@ -68,6 +73,7 @@ public class StableServiceImpl implements StableService {
 
     @Override
     public List<Horse> listHorses(String stableName) {
+        System.out.println("STABLE SERVICE CALLING listHorses ==>");
         return horseRepository.findHorseByStableName(stableName);
     }
 }

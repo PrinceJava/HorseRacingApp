@@ -63,7 +63,7 @@ public class RaceServiceImpl implements RaceService {
      */
     @Override
     public void startRace(String horseName, String jockeyName, String trackName) {
-        System.out.println("Calling CategoryService createCategory ==>");
+        System.out.println("RACE SERVICE CALLING startRace ==>");
         // TODO logic of taking horse and Jockey input, as well as Track input
         Random random = new Random();
         Hashtable<Horse, Jockey> racer = new Hashtable<>();
@@ -97,12 +97,6 @@ public class RaceServiceImpl implements RaceService {
 
             for (Map.Entry<Horse, Jockey> entry : entrySet) {
 
-                //TODO logic to update
-                // if selected.track == horse.favorite +1
-                // if seleted.track == worst -1
-                // logic for stamina difference from horse stamina and track distance - 1 for every 200 difference
-                // jockey skill level +1 for everyone over 5 and -1 for everything under 5
-                // random number to adjust 5 percent
                 if (entry.getKey().getFavCondition().equalsIgnoreCase(selectedTrack.getCondition())) {
                     entry.getKey().setSpeed(String.valueOf(Integer.parseInt(entry.getKey().getSpeed()) + 5));
                 } else if (entry.getKey().getWorstCondition().equalsIgnoreCase(selectedTrack.getCondition())) {
