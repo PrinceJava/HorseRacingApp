@@ -117,7 +117,7 @@ public class RaceLedgerServiceImpl implements RaceLedgerService {
      * 4. Utilize Query and Update objects to find the RaceLedger Object and push results with each field of Result obj.
      * 5. Use mongoTemplate.upsert to add all Updated Changes to Query Object of createdLedger
      * @param trackName - selectedTrack from startRace
-     * @param results - List of Horse Jockeys, sorted by horse final speed
+     * @param results - List of Horse Jockeys, sorted by horse final speed, which is a double
      */
     @Override
     public void createEntry(String trackName, List<Map.Entry<Horse, Jockey>> results) {
